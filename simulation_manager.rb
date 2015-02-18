@@ -144,6 +144,11 @@ alive do
           puts "Could not retrieve proper simulation input"
 
           return
+        elsif simulation_input['status'] == 'wait'
+          wait_time = simulation_input['duration_in_seconds'].to_i
+          puts "There is no more simulations to run in this experiment at the moment, time to wait: #{wait_time}s"
+          sleep(wait_time)
+          next
         elsif simulation_input['status'] == 'all_sent'
           puts 'There is no more simulations to run in this experiment'
 
